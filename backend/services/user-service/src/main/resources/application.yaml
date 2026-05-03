@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:postgresql://user-db:5432/user_service_db
+    driverClassName: org.postgresql.Driver
+    username: user_service
+    password: user_service_pass
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8080
