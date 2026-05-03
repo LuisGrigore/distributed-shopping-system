@@ -2,6 +2,7 @@ package com.distributedshoppingsystem.userservice.mappers.implementations;
 
 import com.distributedshoppingsystem.userservice.dtos.CreateUserDto;
 import com.distributedshoppingsystem.userservice.dtos.UserCreatedDto;
+import com.distributedshoppingsystem.userservice.dtos.UserDetailsDto;
 import com.distributedshoppingsystem.userservice.mappers.IUserMapper;
 import com.distributedshoppingsystem.userservice.models.User;
 
@@ -37,6 +38,17 @@ public class UserMapper implements IUserMapper {
                 .active(user.isActive())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
+                .build();
+    }
+
+    @Override
+    public UserDetailsDto toUserDetailsDto(User user) {
+        return UserDetailsDto.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .phoneNumber(user.getPhoneNumber())
+                .email(user.getEmail())
+                .active(user.isActive())
                 .build();
     }
 }

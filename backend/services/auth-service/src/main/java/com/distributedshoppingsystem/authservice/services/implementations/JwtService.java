@@ -1,6 +1,7 @@
 package com.distributedshoppingsystem.authservice.services.implementations;
 
 
+import com.distributedshoppingsystem.authservice.dtos.ValidationResponse;
 import com.distributedshoppingsystem.authservice.services.IJwtService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -35,15 +36,25 @@ public class JwtService implements IJwtService {
     }
 
     @Override
-    public boolean validateToken(String token) {
+    public ValidationResponse validateAndExtract(String token) {
         try {
-            Jwts.parser()
+            var claims = Jwts.parser()
                     .verifyWith(getSigningKey())
                     .build()
-                    .parseSignedClaims(token);
-            return true;
+                    .parseSignedClaims(token)
+                    .getPayload();
+
+            UUID userId = UUID.fromString(claims.getSubject());
+            String email = claims.get("email", String.class);
+
+            return ValidationResponse.builder()
+                    .userId(userId)
+                    .email(email)
+                    .isActive(true) // o lo que corresponda
+                    .build();
+
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException("Invalid token");
         }
     }
 }
