@@ -20,7 +20,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/backend/auth/pom.xml" />
-        <option value="$PROJECT_DIR$/backend/infrastructure/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/backend/services/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/discovery-service/pom.xml" />
       </set>

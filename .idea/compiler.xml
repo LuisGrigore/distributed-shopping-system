@@ -16,6 +16,7 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
+        <module name="gateway" />
         <module name="auth-service" />
         <module name="user-service" />
       </profile>
@@ -25,7 +26,6 @@
       <module name="common-lib (1)" target="21" />
       <module name="discovery-service (1)" target="21" />
       <module name="distributed-shopping-system" target="1.5" />
-      <module name="gateway" target="21" />
       <module name="gateway (1)" target="21" />
     </bytecodeTargetLevel>
   </component>

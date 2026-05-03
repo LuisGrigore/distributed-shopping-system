@@ -28,8 +28,6 @@ services:
 
   user-service:
     build: ./services/user-service
-    ports:
-      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://user-db:5432/user_service_db
       SPRING_DATASOURCE_USERNAME: user_service
@@ -62,8 +60,6 @@ services:
 
   auth-service:
     build: ./services/auth-service
-    ports:
-      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://auth-db:5432/auth_service_db
       SPRING_DATASOURCE_USERNAME: auth_service
@@ -76,6 +72,20 @@ services:
         condition: service_healthy
       auth-db:
         condition: service_healthy
+      user-service:
+        condition: service_started
+
+  gateway:
+    build: ./infrastructure/gateway
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      auth-service:
+        condition: service_started
       user-service:
         condition: service_started
 
