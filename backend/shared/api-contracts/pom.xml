@@ -1,0 +1,12 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.distributed-shopping-system</groupId>
+        <artifactId>monorepo</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <artifactId>api-contracts</artifactId>
+    <packaging>jar</packaging>
+</project>
